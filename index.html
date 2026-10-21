@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Media - Solusi Sistem Informasi & Aplikasi Bisnis Modern</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome Icons 6.4.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#4f46e5',     /* Indigo Modern */
+                            primaryDark: '#312e81', /* Deep Indigo */
+                            primaryLight: '#eef2ff',/* Soft Indigo Tint */
+                            border: '#c7d2fe',      /* Border Indigo Soft */
+                            accent: '#06b6d4',      /* Vibrant Cyan */
+                            accentHover: '#0891b2', /* Cyan Hover */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+<style>
+        /* Hero Normal (Mode Terang) */
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.25) 0%, rgba(255, 255, 255, 0) 70%),
+                        linear-gradient(135deg, #090d16 0%, #1e1b4b 50%, #312e81 100%);
+        }
+
+        .custom-card {
+            background: #ffffff;
+            border: 1px solid rgba(199, 210, 254, 0.6);
+            box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.06);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .custom-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(6, 182, 212, 0.6);
+            box-shadow: 0 20px 35px -10px rgba(6, 182, 212, 0.2);
+        }
+
+        /* ANIMASI MARQUEE */
+        @keyframes scrollHorizontal {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.333%); }
+        }
+
+        @keyframes scrollHorizontalReverse {
+            0% { transform: translateX(-33.333%); }
+            100% { transform: translateX(0); }
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: scrollHorizontal 30s linear infinite;
+        }
+
+        .marquee-track-reverse {
+            display: flex;
+            width: max-content;
+            animation: scrollHorizontalReverse 35s linear infinite;
+        }
+
+        .marquee-container:hover .marquee-track,
+        .marquee-container:hover .marquee-track-reverse {
+            animation-play-state: paused;
+        }
+
+        /* SPA Tab Transitions */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-tab.active {
+            background-color: #4f46e5;
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+            font-weight: 700;
+        }
+
+        /* Modal Animation */
+        @keyframes modalShow {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .modal-animate {
+            animation: modalShow 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* ========================================================= */
+        /* --- STYLING MODE GELAP (DARK MODE OVERRIDES) --- */
+        /* ========================================================= */
+
+        body.dark-mode {
+            background-color: #0b0f19 !important;
+            color: #f8fafc !important;
+        }
+
+        /* 1. PAKSA LATAR HOME (HERO SECTION) MENJADI GELAP PEKAT */
+        body.dark-mode .hero-gradient,
+        body.dark-mode section.hero-gradient,
+        body.dark-mode div.hero-gradient {
+            background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.12) 0%, rgba(11, 15, 25, 0) 70%),
+                        linear-gradient(135deg, #030712 0%, #0b0f19 50%, #111827 100%) !important;
+        }
+
+        /* 2. HEADER & LOGO DI MODE GELAP */
+        body.dark-mode header,
+        body.dark-mode nav {
+            background-color: rgba(11, 15, 25, 0.95) !important;
+            border-color: #1e293b !important;
+        }
+
+        body.dark-mode header a,
+        body.dark-mode header span,
+        body.dark-mode header h1,
+        body.dark-mode header .font-bold {
+            color: #ffffff !important;
+        }
+
+        /* Hapus bulatan putih tombol darkmode di header jika ada */
+        body.dark-mode #themeToggle {
+            background-color: transparent !important;
+        }
+
+        /* 3. KARTU & FORM DI MODE GELAP */
+        body.dark-mode .custom-card,
+        body.dark-mode form {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+            color: #ffffff !important;
+        }
+
+        /* 4. BADGE LONJONG KECIL DI ATAS JUDUL */
+        body.dark-mode .inline-block.rounded-full,
+        body.dark-mode span.rounded-full,
+        body.dark-mode [class*="rounded-full"][class*="bg-white"] {
+            background-color: #1e293b !important;
+            border: 1px solid #475569 !important;
+            color: #38bdf8 !important;
+        }
+
+        /* 5. KOTAK IKON KECIL DI DALAM KARTU */
+        body.dark-mode .custom-card div[class*="bg-white"],
+        body.dark-mode .custom-card span[class*="bg-white"] {
+            background-color: #0f172a !important;
+            border-color: #334155 !important;
+            color: #ffffff !important;
+        }
+
+        /* 6. WARNA TEKS JUDUL & DESKRIPSI */
+        body.dark-mode h1, 
+        body.dark-mode h2, 
+        body.dark-mode h3, 
+        body.dark-mode h4, 
+        body.dark-mode p,
+        body.dark-mode label {
+            color: #f1f5f9 !important;
+        }
+
+        /* 7. INPUT FORM & FOOTER */
+        body.dark-mode input,
+        body.dark-mode textarea,
+        body.dark-mode select {
+            background-color: #0f172a !important;
+            border-color: #475569 !important;
+            color: #ffffff !important;
+        }
+
+        body.dark-mode footer,
+        body.dark-mode .bg-indigo-950,
+        body.dark-mode [class*="bg-indigo-9"] {
+            background-color: #030712 !important;
+            border-color: #1e293b !important;
+        } 
+
+        /* PERBAIKAN TEKS MENU NAVIGASI (HOME, LAYANAN, APLIKASI, KLIEN, TENTANG) DI MODE GELAP */
+        body.dark-mode nav button.nav-tab,
+        body.dark-mode nav a.nav-tab,
+        body.dark-mode header .nav-tab {
+            color: #cbd5e1 !important; /* Warna abu terang untuk menu yang TIDAK AKTIF */
+        }
+
+        /* Saat menu diarahkan kursor (Hover) */
+        body.dark-mode nav button.nav-tab:hover,
+        body.dark-mode nav a.nav-tab:hover {
+            color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Menu yang Sedang AKTIF (Tombol Biru/Ungu) */
+        body.dark-mode nav button.nav-tab.active,
+        body.dark-mode nav a.nav-tab.active,
+        body.dark-mode header .nav-tab.active {
+            background-color: #6366f1 !important; /* Warna tombol aktif */
+            color: #ffffff !important; /* Teks putih jelas */
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4) !important;
+        }
+
+        /* ========================================================= */
+        /* --- PERBAIKAN POP-UP MODAL DI MODE GELAP --- */
+        /* ========================================================= */
+
+        /* Kotak Modal Utama */
+        body.dark-mode #appModal,
+        body.dark-mode .modal-animate,
+        body.dark-mode div[id*="Modal"] > div {
+            background-color: #1e293b !important;
+            border-color: #334155 !important;
+            color: #ffffff !important;
+        }
+
+        /* Teks Judul dan Deskripsi di dalam Modal */
+        body.dark-mode #modalAppTitle,
+        body.dark-mode #modalAppDesc,
+        body.dark-mode h3[id*="modal"],
+        body.dark-mode p[id*="modal"] {
+            color: #f8fafc !important;
+        }
+
+        /* Tombol Tutup (Close) di Modal */
+        body.dark-mode #appModal button,
+        body.dark-mode #appModal .bg-slate-100 {
+            background-color: #0f172a !important;
+            color: #cbd5e1 !important;
+            border-color: #475569 !important;
+        }
+
+        body.dark-mode #appModal button:hover {
+            background-color: #334155 !important;
+            color: #ffffff !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen overflow-x-hidden">
+
+    <!-- Header / Navbar Sticky Container -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-indigo-100 transition-all">
+        <div class="max-w-7xl mx-auto py-3.5 px-4 sm:px-8 flex items-center justify-between">
+            
+            <!-- Logo Gambar -->
+            <a href="javascript:void(0)" onclick="switchTab('home')" class="flex items-center gap-3 group">
+              <img src="Logo.png.png" alt="Access Media" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+              <span class="text-lg font-black tracking-wider text-black">ACCESS MEDIA</span>
+            </a>             
+
+            <!-- Navigation Bar Menu - Pill Style -->
+            <nav class="hidden lg:flex items-center bg-indigo-50/80 p-1.5 rounded-full border border-indigo-100 space-x-1 text-xs font-semibold tracking-wide text-slate-700">
+                <button onclick="switchTab('home')" id="nav-home" class="nav-tab active px-5 py-2 rounded-full transition-all">HOME</button>
+                <button onclick="switchTab('layanan')" id="nav-layanan" class="nav-tab px-5 py-2 rounded-full transition-all hover:text-indigo-600">LAYANAN</button>
+                <button onclick="switchTab('aplikasi')" id="nav-aplikasi" class="nav-tab px-5 py-2 rounded-full transition-all hover:text-indigo-600">APLIKASI</button>
+                <button onclick="switchTab('klien')" id="nav-klien" class="nav-tab px-5 py-2 rounded-full transition-all hover:text-indigo-600">KLIEN</button>
+                <button onclick="switchTab('tentang')" id="nav-tentang" class="nav-tab px-5 py-2 rounded-full transition-all hover:text-indigo-600">TENTANG</button>
+            </nav>
+
+           <!-- Action Button Header (Dipaksa Sejajar Tanpa Syarat lg:) -->
+<div class="flex items-center gap-2 sm:gap-3">
+    <!-- Tombol Konsultasi Gratis -->
+    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 sm:px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm">
+        <i class="fa-brands fa-whatsapp text-sm"></i> 
+        <span class="hidden sm:inline">Konsultasi Gratis</span>
+        <span class="inline sm:hidden">Konsultasi</span>
+    </a>
+    
+    <!-- Tombol Dark Mode Tanpa Latar Putih -->
+<button id="themeToggle" class="p-2.5 rounded-full text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 focus:outline-none">
+    <!-- Ikon Bulan (Tampil saat mode terang) -->
+    <svg id="themeMoon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+    </svg>
+    <!-- Ikon Matahari (Tampil saat mode gelap, tersembunyi secara default) -->
+    <svg id="themeSun" class="w-6 h-6 hidden text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"></path>
+    </svg>
+</button>
+</div>
+    </header>
+
+    <!-- Mobile Dropdown Navigation Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden fixed inset-x-0 top-16 z-50 bg-indigo-950/95 backdrop-blur-md border-b border-indigo-900 p-6 space-y-3 text-center font-semibold text-sm text-slate-100 shadow-2xl">
+        <button onclick="switchTab('home'); toggleMobileMenu();" class="w-full py-2.5 border-b border-indigo-900 text-white">HOME</button>
+        <button onclick="switchTab('layanan'); toggleMobileMenu();" class="w-full py-2.5 border-b border-indigo-900">LAYANAN</button>
+        <button onclick="switchTab('aplikasi'); toggleMobileMenu();" class="w-full py-2.5 border-b border-indigo-900">APLIKASI</button>
+        <button onclick="switchTab('klien'); toggleMobileMenu();" class="w-full py-2.5 border-b border-indigo-900">KLIEN</button>
+        <button onclick="switchTab('tentang'); toggleMobileMenu();" class="w-full py-2.5">TENTANG</button>
+    </div>
+
+    <!-- Main Container Body -->
+    <main class="flex-grow relative">
+
+    <!-- TAB 1: HOME PAGE -->
+        <div id="tab-home" class="tab-content active">
+            <!-- Hero Section -->
+            <section class="hero-gradient min-h-[620px] pt-24 pb-28 px-4 relative flex flex-col justify-center items-center text-center overflow-hidden">
+                <div class="max-w-4xl mx-auto space-y-6 z-10" data-aos="zoom-in" data-aos-duration="900">
+                    
+                    <!-- Judul Utama Besar: ACCESS MEDIA -->
+                    <h1 class="text-4xl sm:text-6xl md:text-7xl text-white font-black leading-tight tracking-tight mb-4">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-teal-200 to-indigo-300">
+                            ACCESS MEDIA
+                        </span>
+                    </h1>
+
+                    <!-- Sub-Judul Lebih Kecil & Sedang: Rasakan kemudahan... -->
+                    <h2 class="text-lg sm:text-2xl md:text-3xl text-indigo-100 font-semibold tracking-wide leading-snug mb-6">
+                        Rasakan kemudahan mengelola bisnis anda
+                    </h2>
+
+                    <!-- Deskripsi Singkat -->
+                    <p class="text-indigo-200/90 text-xs sm:text-sm max-w-2xl mx-auto font-normal leading-relaxed pt-2">
+                        Nikmati kepraktisan mengelola inventaris, transaksi kasir, serta laporan keuangan terpadu dalam satu platform aplikasi kustom.
+                    </p>
+
+                    <!-- Tombol Action -->
+                    <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+                        <button onclick="switchTab('aplikasi')" class="px-8 py-3.5 bg-brand-accent hover:bg-brand-accentHover text-white font-bold text-sm sm:text-base rounded-full shadow-xl shadow-cyan-500/30 transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2">
+                            Lihat Katalog Aplikasi <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button> 
+                        <button onclick="switchTab('layanan')" class="px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-sm sm:text-base rounded-full backdrop-blur-md transition-all">
+                            Eksplor Layanan
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+        
+        <!-- TAB 2: LAYANAN (SERVICES) PAGE -->
+        <div id="tab-layanan" class="tab-content py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-down" data-aos-duration="800">
+                <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">Solusi Teknologi Terintegrasi</span>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-3 tracking-tight">Layanan Profesional Kami</h1>
+                <p class="text-slate-600 text-sm sm:text-base mt-3">Dukungan teknis menyeluruh untuk memastikan efisiensi operasional usaha Anda.</p>
+            </div>
+
+            <div class="space-y-6">
+                <div data-aos="zoom-in-up" data-aos-duration="700" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div class="flex-grow space-y-2 text-center md:text-left">
+                        <h2 class="text-2xl font-bold text-slate-900">Developing (Pengembangan Software Custom)</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed">Pengembangan aplikasi kustom (Desktop, Web, & Mobile) disesuaikan persis dengan skema bisnis dan workflow perusahaan Anda.</p>
+                    </div>
+                    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20tertarik%20Developing" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Konsultasi
+                    </a>
+                </div>
+
+                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="100" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div class="flex-grow space-y-2 text-center md:text-left">
+                        <h2 class="text-2xl font-bold text-slate-900">Consulting (Konsultasi Sistem & IT)</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed">Analisis mendalam mengenai sistem operasional, pencatatan stok, dan pemberian rekomendasi cetak biru IT terbaik.</p>
+                    </div>
+                    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20tertarik%20Consulting" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Konsultasi
+                    </a>
+                </div>
+
+                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="200" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <div class="flex-grow space-y-2 text-center md:text-left">
+                        <h2 class="text-2xl font-bold text-slate-900">Supporting (Dukungan & Technical Support)</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed">Layanan bantuan teknis responsif via remote AnyDesk, WhatsApp, telepon, hingga maintenance *on-site*.</p>
+                    </div>
+                    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20butuh%20Supporting" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Bantuan
+                    </a>
+                </div>
+
+                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="300" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div class="flex-grow space-y-2 text-center md:text-left">
+                        <h2 class="text-2xl font-bold text-slate-900">Training (Pelatihan SDM & User)</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed">Sesi edukasi dan bimbingan penggunaan aplikasi secara komprehensif untuk staf kasir, admin gudang, hingga pihak manajemen.</p>
+                    </div>
+                    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20butuh%20Training" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Jadwal Training
+                    </a>
+                </div>
+
+                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="400" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center">
+                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100">
+                        <i class="fa-solid fa-server"></i>
+                    </div>
+                    <div class="flex-grow space-y-2 text-center md:text-left">
+                        <h2 class="text-2xl font-bold text-slate-900">Link and Data Service</h2>
+                        <p class="text-slate-600 text-sm leading-relaxed">Integrasi basis data online antar cabang toko maupun gudang secara *real-time* dengan protokol enkripsi data aman.</p>
+                    </div>
+                    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20tertarik%20Link%20Data%20Service" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Konsultasi Data
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    <!-- TAB 3: APLIKASI (PRODUCTS) PAGE - GRID STATIS -->
+        <div id="tab-aplikasi" class="tab-content py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10" data-aos="zoom-in" data-aos-duration="700">
+                <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">KATALOG SOFTWARE</span>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-3 tracking-tight">Eksplorasi Software Bisnis</h1>
+                <p class="text-slate-600 text-sm mt-2 mb-6">Klik kartu untuk melihat detail penjelasan aplikasi.</p>
+                
+                <!-- Input Pencarian (Ikon Sudah Masuk ke Dalam Kotak) -->
+                <div class="relative max-w-xl mx-auto">
+                    <input type="text" id="appSearchInput" onkeyup="filterApps()" placeholder="Cari nama aplikasi..." class="w-full bg-white border border-slate-300 rounded-full py-3.5 pl-12 pr-6 text-sm text-slate-800 outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/10 transition-all shadow-sm">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                </div>
+            </div>
+
+            <!-- GRID STATIS -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 py-4">
+                
+                <div onclick="openModal('Aplikasi Toko Meubel', 'Software terpadu untuk pencatatan stok furniture, pemesanan kustom kayu, kasir penjualan, dan cicilan/DP pembeli.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-store text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Meubel</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Petshop', 'Sistem khusus toko pakan, booking grooming hewan, penitipan pet hotel, dan rekam medis pasien oleh dokter hewan.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-paw text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Petshop</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Bengkel Motor dan Variasi', 'Kelola pendaftaran servis motor, nota pembelian sparepart, komisi mekanik, dan garansi pekerjaan.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-motorcycle text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Bengkel Motor</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Body Repair', 'Modul pencatatan estimasi klaim asuransi, estimasi bahan cat, progres pengerjaan mobil, dan tagihan SPK.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-car-side text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Body Repair</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Toko Bangunan', 'Software stok eceran & grosir bahan bangunan, pencatatan pengiriman armada truk, serta hutang piutang kontraktor.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-trowel-bricks text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Bangunan</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Mini Market', 'Sistem Kasir POS barcode super cepat, cetak struk thermal, manajemen diskon member, dan laporan laba rugi.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-cart-shopping text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Mini Market</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Toko Pancing', 'Pencatatan ribuan variasi joran, umpan, kail, perlengkapan pancing, dan sistem kasir grosir/eceran.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-fish text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Pancing</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Depo / Grosir', 'Sistem pergudangan bertingkat, penjualan grosir bertingkat, stok kontainer, serta laporan salesman harian.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-warehouse text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Depo / Grosir</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Distributor Buku', 'Pencatatan master buku, penerbit, nomor ISBN, konsinyasi toko buku, dan komisi agen penerbit.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-book-open text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Distributor Buku</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Toko Komputer', 'Pencatatan nomor seri/SN barang elektronik, garansi tukar unit, kasir rakitan PC, dan teknisi servis.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-laptop text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Komputer</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Gaji / Payroll', 'Perhitungan gaji pokok, insentif lembur, presensi absensi, potongan BPJS, dan cetak slip gaji karyawan.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-money-bill-wave text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Payroll / Gaji</h3>
+                </div>
+
+                <div onclick="openModal('Aplikasi Farmasi / Apotek', 'Sistem obat resep & racikan, pengelompokan batch number, expired date BPOM, dan laporan psikotropika.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[170px] group">
+                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto"><i class="fa-solid fa-capsules text-3xl"></i></div>
+                    <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Farmasi / Apotek</h3>
+                </div>
+
+            </div>
+        </div>
+
+       <!-- TAB 4: KLIEN (CLIENTS) PAGE -->
+        <div id="tab-klien" class="tab-content py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-10" data-aos="zoom-in" data-aos-duration="700">
+                <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">PORTOFOLIO MITRA</span>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mt-3 tracking-tight">Dipercaya 100+ Pengusaha</h1>
+                <p class="text-slate-600 text-sm mt-3 mb-6">Kartu mitra bergerak berjalan (Arahkan kursor untuk berhenti sementara).</p>
+                
+                <!-- Input Pencarian -->
+                <div class="relative max-w-xl mx-auto">
+                    <input type="text" id="clientSearchInput" onkeyup="filterClients()" placeholder="Cari nama klien / instansi..." class="w-full bg-white border border-slate-300 rounded-full py-3.5 pl-12 pr-6 text-sm text-slate-800 outline-none focus:border-indigo-600 focus:ring-4 focus:ring-indigo-500/10 transition-all shadow-sm">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                </div>
+            </div>
+
+            <div class="marquee-container overflow-hidden relative py-4 space-y-6">
+                
+                <!-- BARIS 1: JALAN KE KIRI -->
+                <div class="marquee-track flex gap-5">
+                    <!-- KELOMPOK A -->
+                    <div class="flex gap-5">
+                        <div onclick="openModal('Dinas Kesehatan Kab. Subang', 'Mitra instansi pemerintah daerah.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="dinkes.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Dinkes Kab. Subang</h3>
+                        </div>
+                        <div onclick="openModal('BLUD Kabupaten Subang', 'Sistem akuntansi keuangan BLUD.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="subang.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">BLUD Kab. Subang</h3>
+                        </div>
+                        <div onclick="openModal('LPT Saraswati', 'Lembaga pendidikan tinggi.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="saraswati.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">LPT Saraswati</h3>
+                        </div>
+                        <div onclick="openModal('ABM Computer', 'Pusat penjualan perangkat keras.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="abm.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">ABM Computer</h3>
+                        </div>
+                        <div onclick="openModal('Pondok Pesantren Al-Hasan Ciamis', 'Manajemen keuangan pesantren.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="alhasan.jpg" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Al-Hasan Ciamis</h3>
+                        </div>
+                        <div onclick="openModal('BMT Al-Muhajirin', 'Software akuntansi syariah.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="almuhajirin.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">BMT Al-Muhajirin</h3>
+                        </div>
+                    </div>
+
+                    <!-- KELOMPOK B (DUPLIKAT PERSIS SAMA DENGAN A) -->
+                    <div class="flex gap-5">
+                        <div onclick="openModal('Dinas Kesehatan Kab. Subang', 'Mitra instansi pemerintah daerah.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="dinkes.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Dinkes Kab. Subang</h3>
+                        </div>
+                        <div onclick="openModal('BLUD Kabupaten Subang', 'Sistem akuntansi keuangan BLUD.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="subang.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">BLUD Kab. Subang</h3>
+                        </div>
+                        <div onclick="openModal('LPT Saraswati', 'Lembaga pendidikan tinggi.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="saraswati.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">LPT Saraswati</h3>
+                        </div>
+                        <div onclick="openModal('ABM Computer', 'Pusat penjualan perangkat keras.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="abm.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">ABM Computer</h3>
+                        </div>
+                        <div onclick="openModal('Pondok Pesantren Al-Hasan Ciamis', 'Manajemen keuangan pesantren.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="alhasan.jpg" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Al-Hasan Ciamis</h3>
+                        </div>
+                        <div onclick="openModal('BMT Al-Muhajirin', 'Software akuntansi syariah.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="almuhajirin.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">BMT Al-Muhajirin</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BARIS 2: JALAN KE KANAN -->
+                <div class="marquee-track-reverse flex gap-5">
+                    <!-- KELOMPOK A -->
+                    <div class="flex gap-5">
+                        <div onclick="openModal('Padaringan Tasikmalaya', 'Pusat oleh-oleh.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="padaringan.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Padaringan</h3>
+                        </div>
+                        <div onclick="openModal('SMARTNEUTRON', 'Lembaga bimbingan belajar.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="smartneutron.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">SMARTNEUTRON</h3>
+                        </div>
+                        <div onclick="openModal('CV. Niaga Sejahtera', 'Distributor barang konsumsi.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="cvns.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">CV. Niaga Sejahtera</h3>
+                        </div>
+                        <div onclick="openModal('Grosir Berkah Jaya', 'Grosir kebutuhan pokok.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="gbj.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Grosir Berkah Jaya</h3>
+                        </div>
+                        <div onclick="openModal('Pangkalan Pancing Tasikmalaya', 'Toko alat pancing.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="ppt.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Pangkalan Pancing</h3>
+                        </div>
+                        <div onclick="openModal('COBOY Petshop', 'Klinik hewan dan petshop.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="coboy.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">COBOY Petshop</h3>
+                        </div>
+                    </div>
+
+                    <!-- KELOMPOK B (DUPLIKAT PERSIS SAMA DENGAN A) -->
+                    <div class="flex gap-5">
+                        <div onclick="openModal('Padaringan Tasikmalaya', 'Pusat oleh-oleh.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="padaringan.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Padaringan</h3>
+                        </div>
+                        <div onclick="openModal('SMARTNEUTRON', 'Lembaga bimbingan belajar.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="smartneutron.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">SMARTNEUTRON</h3>
+                        </div>
+                        <div onclick="openModal('CV. Niaga Sejahtera', 'Distributor barang konsumsi.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="cvns.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">CV. Niaga Sejahtera</h3>
+                        </div>
+                        <div onclick="openModal('Grosir Berkah Jaya', 'Grosir kebutuhan pokok.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="https://accessmedia.co.id/client/10.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Grosir Berkah Jaya</h3>
+                        </div>
+                        <div onclick="openModal('Pangkalan Pancing Tasikmalaya', 'Toko alat pancing.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="ppt.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">Pangkalan Pancing</h3>
+                        </div>
+                        <div onclick="openModal('COBOY Petshop', 'Klinik hewan dan petshop.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                            <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="coboy.png" class="max-h-full max-w-full object-contain"></div>
+                            <h3 class="text-xs font-bold text-slate-800">COBOY Petshop</h3>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--  : TENTANG (ABOUT) PAGE -->
+        <div id="tab-tentang" class="tab-content py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="space-y-4 pt-1" data-aos="zoom-in-right" data-aos-duration="800">
+                    <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100">Profil Perusahaan</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Access Media Tasikmalaya</h1>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Access Media adalah pengembang software, sistem informasi database, serta penyedia konsultasi IT terkemuka. Kami berdedikasi membangun aplikasi bisnis yang terpercaya, efisien, dan ramah pengguna bagi pengusaha skala UMKM hingga korporasi.
+                    </p>
+                </div>
+                <div data-aos="zoom-in-left" data-aos-duration="800" class="custom-card p-8 rounded-3xl">
+                    <h2 class="text-xl font-bold text-slate-900 mb-4">Konsultasi Langsung</h2>
+                    <form onsubmit="event.preventDefault(); alert('Pesan berhasil terkirim! Tim konsultan kami akan segera menghubungi Anda.');" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Nama Lengkap</label>
+                            <input type="text" required placeholder="Masukkan nama..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 outline-none focus:border-indigo-600 focus:bg-white transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Nomor WhatsApp</label>
+                            <input type="tel" required placeholder="0812xxxx" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 outline-none focus:border-indigo-600 focus:bg-white transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Detail Kebutuhan Sistem</label>
+                            <textarea rows="3" required placeholder="Jelaskan kebutuhan aplikasi bisnis Anda..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs text-slate-800 outline-none focus:border-indigo-600 focus:bg-white transition-all"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-brand-accent hover:bg-brand-accentHover text-white font-bold rounded-xl text-xs transition-all shadow-md shadow-cyan-500/20">Kirim Pesan Konsultasi</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- POPUP MODAL DETAIL -->
+    <div id="appModal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 modal-animate">
+            <button onclick="closeAppModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-800 text-xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center space-y-4 pt-2">
+                <h3 id="modalAppTitle" class="text-2xl font-black text-slate-900 leading-snug">Nama Item</h3>
+                <p id="modalAppDesc" class="text-slate-600 text-xs sm:text-sm leading-relaxed">Penjelasan rinci mengenai item akan ditampilkan di sini.</p>
+                
+                <div class="pt-4 border-t border-slate-100 flex gap-3">
+                    <button onclick="closeAppModal()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition-colors">Tutup</button>
+                    <a id="modalWaBtn" href="#" target="_blank" class="w-1/2 py-2.5 bg-brand-accent hover:bg-brand-accentHover text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors shadow-md shadow-cyan-500/20">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Tanya Info
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-2xl shadow-xl transition-all transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer Modern -->
+    <footer class="bg-indigo-950 text-slate-300 pt-12 pb-8 text-xs mt-auto border-t border-indigo-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 grid md:grid-cols-3 gap-8 pb-8 border-b border-indigo-900 text-center md:text-left">
+            <div>
+                <h4 class="font-bold text-white mb-3 text-sm">Hubungi Kami</h4>
+                <p class="mb-2"><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i> 0852-2041-9992</p>
+                <p class="mb-2"><i class="fa-brands fa-facebook text-blue-400 mr-2"></i> Access Media</p>
+                <p><i class="fa-brands fa-youtube text-red-400 mr-2"></i> Access Media</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-3 text-sm">Alamat Kantor</h4>
+                <p class="text-indigo-200 leading-relaxed">JL. Noenoeng Tisnasaputra, Kahuripan, Kec. Tawang, Tasikmalaya, Jawa Barat 46116</p>
+            </div>
+            <!-- Kolom 3: Logo Access Media -->
+        <div class="flex flex-col items-center justify-center text-center">
+          <img src="Logo-access (1).png" alt="Access Media" class="h-20 w-auto object-contain mix-blend-screen mb-1">
+          <span class="text-lg font-black tracking-wider text-white">ACCESS MEDIA</span>
+        </div>
+
+        </div>
+        <div class="text-center pt-6 text-indigo-400">
+            <p>&copy; 2026 Access Media - Database & Information System. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AOS Library JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: false,
+            mirror: true,
+            duration: 800
+        });
+    </script>
+
+    <!-- Script Khusus Dark Mode Toggle -->
+     <script>
+        // Fungsi Toggle Dark / Light Mode
+function toggleDarkMode() {
+    const body = document.body;
+    const icon = document.getElementById('darkModeIcon');
+    
+    // Switch class dark-mode
+    body.classList.toggle('dark-mode');
+    
+    // Cek status mode saat ini
+    const isDark = body.classList.contains('dark-mode');
+    
+    // Ganti Ikon Bulan / Matahari
+    if (isDark) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark'); // Simpan preferensi
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Cek simpanan tema pengguna saat halaman dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        const icon = document.getElementById('darkModeIcon');
+        if (icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+});
+     </script>
+
+   <!-- JavaScript for SPA Tab Switching, Search, Modal & Dark Mode -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            const target = document.getElementById('tab-' + tabId);
+            if(target) {
+                target.classList.add('active');
+            }
+
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const activeNavBtn = document.getElementById('nav-' + tabId);
+            if(activeNavBtn) {
+                activeNavBtn.classList.add('active');
+            }
+
+            setTimeout(() => {
+                AOS.refresh();
+            }, 100);
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if(menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+
+        /* Filter Aplikasi */
+        function filterApps() {
+            const input = document.getElementById('appSearchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.app-card-item');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                if(title.includes(input)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        /* Filter Klien */
+        function filterClients() {
+            const input = document.getElementById('clientSearchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.client-card-item');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                if(title.includes(input)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        /* Modal Detail Popup */
+        function openModal(title, description) {
+            document.getElementById('modalAppTitle').innerText = title;
+            document.getElementById('modalAppDesc').innerText = description;
+            document.getElementById('modalWaBtn').href = 'https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20tertarik%20dengan%20info%20' + encodeURIComponent(title);
+            
+            const modal = document.getElementById('appModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeAppModal() {
+            const modal = document.getElementById('appModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* --- LOGIKA TOGGLE DARK MODE & IKON BULAN/MATAHARI --- */
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeMoon = document.getElementById('themeMoon');
+        const themeSun = document.getElementById('themeSun');
+
+        function updateThemeIcons(isDark) {
+            if (isDark) {
+                if (themeMoon) themeMoon.classList.add('hidden');
+                if (themeSun) themeSun.classList.remove('hidden');
+            } else {
+                if (themeMoon) themeMoon.classList.remove('hidden');
+                if (themeSun) themeSun.classList.add('hidden');
+            }
+        }
+
+        // Cek status mode saat halaman dibuka
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark-mode');
+            updateThemeIcons(true);
+        } else {
+            document.body.classList.remove('dark-mode');
+            updateThemeIcons(false);
+        }
+
+        // Event saat tombol diklik
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                updateThemeIcons(isDark);
+            });
+        }
+    </script>
+</body>
+</html>
