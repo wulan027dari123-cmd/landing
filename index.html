@@ -262,52 +262,111 @@
             background-color: #334155 !important;
             color: #ffffff !important;
         }
+
+        /* ========================================================= */
+        /* --- PERBAIKAN HAMBURGER & MENU MOBILE DI MODE GELAP --- */
+        /* ========================================================= */
+
+        /* 1. Warna ikon garis tiga (hamburger) jadi terang di mode gelap */
+        body.dark-mode header button[aria-label="Menu"] svg {
+            color: #f8fafc !important;
+            stroke: #f8fafc !important;
+        }
+
+        /* 2. Paksa latar belakang menu dropdown mobile jadi gelap pekat */
+        body.dark-mode #mobileMenu {
+            background-color: #0b0f19 !important;
+            border-color: #1e293b !important;
+        }
+
+        /* 3. Warna teks pilihan menu di dalam dropdown mobile jadi terang */
+        body.dark-mode #mobileMenu button {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode #mobileMenu button:hover {
+            background-color: #1e293b !important;
+            color: #ffffff !important;
+        }
+
+        /* Perbaikan Tombol Hamburger di Mode Gelap */
+        body.dark-mode header button[aria-label="Menu"] {
+            background-color: rgba(255, 255, 255, 0.05) !important; /* Latar belakang transparan gelap */
+            color: #f8fafc !important; /* Warna garis putih terang */
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.dark-mode header button[aria-label="Menu"]:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.dark-mode header button[aria-label="Menu"] svg {
+            color: #f8fafc !important;
+            stroke: #f8fafc !important;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen overflow-x-hidden">
 
     <!-- Header / Navbar Sticky Container -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-indigo-100 transition-all">
-        <div class="max-w-7xl mx-auto py-3.5 px-4 sm:px-8 flex items-center justify-between">
-            
-            <!-- Logo Gambar -->
-            <a href="javascript:void(0)" onclick="switchTab('home')" class="flex items-center gap-3 group">
-              <img src="Logo.png.png" alt="Access Media" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
-              <span class="text-lg font-black tracking-wider text-black">ACCESS MEDIA</span>
-            </a>             
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b0f19]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo Gambar -->
+                <a href="javascript:void(0)" onclick="switchTab('home')" class="flex items-center gap-3 group">
+                    <img src="Logo.png.png" alt="Access Media" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                    <span class="text-lg font-black tracking-wider text-slate-900 dark:text-white">ACCESS MEDIA</span>
+                </a>
 
-            <!-- Navigation Bar Menu - Pill Style -->
-            <nav class="hidden lg:flex items-center bg-indigo-50/80 p-1.5 rounded-full border border-indigo-100 space-x-1 text-xs font-semibold tracking-wide text-slate-700">
-                <button onclick="switchTab('home')" id="nav-home" class="nav-tab active px-5 py-2 rounded-full transition-all">HOME</button>
-                <button onclick="switchTab('layanan')" id="nav-layanan" class="nav-tab px-5 py-2 rounded-full transition-all hover:text-indigo-600">LAYANAN</button>
-                <button onclick="switchTab('aplikasi')" id="nav-aplikasi" class="nav-tab px-5 py-2 rounded-full transition-all hover:text-indigo-600">APLIKASI</button>
-                <button onclick="switchTab('klien')" id="nav-klien" class="nav-tab px-5 py-2 rounded-full transition-all hover:text-indigo-600">KLIEN</button>
-                <button onclick="switchTab('tentang')" id="nav-tentang" class="nav-tab px-5 py-2 rounded-full transition-all hover:text-indigo-600">TENTANG</button>
-            </nav>
+                <!-- Navigation Bar Menu - Pill Style (Desktop) -->
+                <nav class="hidden md:flex items-center space-x-1 bg-slate-100 dark:bg-slate-900 p-1.5 rounded-full border border-slate-200 dark:border-slate-800">
+                    <button onclick="switchTab('home')" id="nav-home" class="nav-tab active px-5 py-2 rounded-full text-sm font-medium transition-all">Home</button>
+                    <button onclick="switchTab('layanan')" id="nav-layanan" class="nav-tab px-5 py-2 rounded-full text-sm font-medium text-slate-600 dark:text-slate-300 transition-all">Layanan</button>
+                    <button onclick="switchTab('aplikasi')" id="nav-aplikasi" class="nav-tab px-5 py-2 rounded-full text-sm font-medium text-slate-600 dark:text-slate-300 transition-all">Aplikasi</button>
+                    <button onclick="switchTab('klien')" id="nav-klien" class="nav-tab px-5 py-2 rounded-full text-sm font-medium text-slate-600 dark:text-slate-300 transition-all">Klien</button>
+                    <button onclick="switchTab('tentang')" id="nav-tentang" class="nav-tab px-5 py-2 rounded-full text-sm font-medium text-slate-600 dark:text-slate-300 transition-all">Tentang</button>
+                </nav>
 
-           <!-- Action Button Header (Dipaksa Sejajar Tanpa Syarat lg:) -->
-<div class="flex items-center gap-2 sm:gap-3">
-    <!-- Tombol Konsultasi Gratis -->
-    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 sm:px-5 py-2.5 rounded-full text-xs font-bold transition-all shadow-sm">
-        <i class="fa-brands fa-whatsapp text-sm"></i> 
-        <span class="hidden sm:inline">Konsultasi Gratis</span>
-        <span class="inline sm:hidden">Konsultasi</span>
-    </a>
-    
-    <!-- Tombol Dark Mode Tanpa Latar Putih -->
-<button id="themeToggle" class="p-2.5 rounded-full text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all duration-300 focus:outline-none">
-    <!-- Ikon Bulan (Tampil saat mode terang) -->
-    <svg id="themeMoon" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-    </svg>
-    <!-- Ikon Matahari (Tampil saat mode gelap, tersembunyi secara default) -->
-    <svg id="themeSun" class="w-6 h-6 hidden text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"></path>
-    </svg>
-</button>
-</div>
+                <!-- Action Button Header & Tombol Kanan -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <!-- Tombol Konsultasi Gratis -->
+                    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2.5 rounded-full text-sm font-semibold shadow-lg shadow-cyan-500/20 transition-all">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span class="hidden sm:inline">Konsultasi Gratis</span>
+                    </a>
+
+                    <!-- Tombol Toggle Dark Mode (Bulan / Matahari) -->
+                    <button id="themeToggle" class="p-2.5 rounded-full text-slate-600 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all focus:outline-none" aria-label="Toggle Dark Mode">
+                        <svg id="themeMoon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="themeSun" class="w-5 h-5 hidden text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" clip-rule="evenodd"></path></svg>
+                    </button>
+
+                    <!-- Tombol Garis Tiga (Hamburger Menu untuk HP) -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none" aria-label="Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile (Muncul saat garis tiga diklik) -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-[#0b0f19] border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-2 shadow-xl">
+            <button onclick="switchTab('home'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Home</button>
+            <button onclick="switchTab('layanan'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Layanan</button>
+            <button onclick="switchTab('aplikasi'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Aplikasi</button>
+            <button onclick="switchTab('klien'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Klien</button>
+            <button onclick="switchTab('tentang'); toggleMobileMenu();" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Tentang</button>
+            <div class="pt-2">
+                <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="flex items-center justify-center gap-2 w-full bg-cyan-500 text-white px-4 py-2.5 rounded-xl font-semibold shadow-md">
+                    <i class="fa-brands fa-whatsapp"></i> Konsultasi Gratis
+                </a>
+            </div>
+        </div>
     </header>
-
     <!-- Mobile Dropdown Navigation Menu -->
     <div id="mobileMenu" class="hidden lg:hidden fixed inset-x-0 top-16 z-50 bg-indigo-950/95 backdrop-blur-md border-b border-indigo-900 p-6 space-y-3 text-center font-semibold text-sm text-slate-100 shadow-2xl">
         <button onclick="switchTab('home'); toggleMobileMenu();" class="w-full py-2.5 border-b border-indigo-900 text-white">HOME</button>
@@ -897,4 +956,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     </script>
 </body>
-</html>
+</html> 
