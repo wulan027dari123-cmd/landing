@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Access Media - Solusi Sistem Informasi & Aplikasi Bisnis Modern</title>
     
     <!-- Favicon / Logo di Tab Browser Chrome -->
@@ -44,6 +44,11 @@
     </script>
     
     <style>
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden !important;
+        }
+
         .custom-card {
             background: #ffffff;
             border: 1px solid rgba(199, 210, 254, 0.6);
@@ -85,7 +90,7 @@
             animation-play-state: paused;
         }
 
-        /* Nav Link Active State (Kapsul Berwarna Indigo saat Di-scroll) */
+        /* Nav Link Active State */
         .nav-link.active {
             background-color: #4f46e5 !important;
             color: #ffffff !important;
@@ -103,7 +108,7 @@
             animation: modalShow 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Ambient Glow Effect Ala Tech Enterprise */
+        /* Ambient Glow Effect */
         .glow-orb {
             position: absolute;
             border-radius: 50%;
@@ -112,10 +117,7 @@
             opacity: 0.25;
         }
 
-        /* ========================================================= */
-        /* --- STYLING MODE GELAP (DARK MODE OVERRIDES) --- */
-        /* ========================================================= */
-
+        /* DARK MODE OVERRIDES */
         body.dark-mode {
             background-color: #0b0f19 !important;
             color: #f8fafc !important;
@@ -182,20 +184,20 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen overflow-x-hidden">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen overflow-x-hidden w-full">
 
     <!-- Header / Navbar Sticky Container -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b0f19]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b0f19]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300 w-full overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
-                <!-- Logo Gambar & Teks (Rapat & Proporsional) -->
-                <a href="#home" class="flex items-center gap-2 group">
-                    <img src="Logo.png.png" alt="Access Media" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
-                    <span class="text-lg font-black tracking-wide text-slate-900 dark:text-white">ACCESS MEDIA</span>
+                <!-- Logo Gambar & Teks -->
+                <a href="#home" class="flex items-center gap-2 group shrink-0">
+                    <img src="Logo.png.png" alt="Access Media" class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+                    <span class="text-base sm:text-lg font-black tracking-wide text-slate-900 dark:text-white">ACCESS MEDIA</span>
                 </a>
 
-                <!-- Navigation Menu (ScrollSpy Active Kapsul Indigo) -->
+                <!-- Navigation Menu -->
                 <nav class="hidden md:flex items-center space-x-1 bg-slate-100 dark:bg-slate-900 p-1.5 rounded-full border border-slate-200 dark:border-slate-800">
                     <a href="#home" id="nav-home" class="nav-link active px-5 py-2 rounded-full text-sm font-medium transition-all text-slate-600 dark:text-slate-300">
                         <i class="fa-solid fa-house mr-1.5 text-xs"></i>Home
@@ -253,23 +255,23 @@
         </div>
     </header>
 
-    <!-- Main Container Body (Continuous Vertical Scroll) -->
-    <main class="flex-grow relative">
+    <!-- Main Container Body -->
+    <main class="flex-grow relative w-full overflow-hidden">
 
-        <!-- SECTION 1: HOME (HERO DENGAN STATISTIK BADGES ENTERPRISE) -->
-        <section id="home" class="relative min-h-[680px] pt-24 pb-20 px-4 flex flex-col justify-center items-center text-center overflow-hidden bg-slate-900">
+        <!-- SECTION 1: HOME -->
+        <section id="home" class="relative min-h-[680px] pt-24 pb-20 px-4 flex flex-col justify-center items-center text-center overflow-hidden bg-slate-900 w-full">
             <!-- Background Foto Jabat Tangan -->
-            <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 z-0 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1920&q=80" alt="Jabat Tangan Kerja Sama" class="w-full h-full object-cover object-center opacity-35">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/75 to-[#090d16]/85"></div>
             </div>
 
-            <!-- Glow Effect Orbs ala Tech Startup Luar Negeri -->
-            <div class="glow-orb w-96 h-96 bg-cyan-500 top-10 left-10"></div>
-            <div class="glow-orb w-96 h-96 bg-indigo-600 bottom-10 right-10"></div>
+            <!-- Glow Effect Orbs -->
+            <div class="glow-orb w-72 h-72 sm:w-96 sm:h-96 bg-cyan-500 top-10 left-0"></div>
+            <div class="glow-orb w-72 h-72 sm:w-96 sm:h-96 bg-indigo-600 bottom-10 right-0"></div>
 
             <!-- Konten Utama Hero Section -->
-            <div class="max-w-4xl mx-auto space-y-6 z-10 relative" data-aos="zoom-in" data-aos-duration="900">
+            <div class="max-w-4xl mx-auto space-y-6 z-10 relative w-full px-2" data-aos="zoom-in" data-aos-duration="900">
                 
                 <!-- Badge Online Tech Enterprise -->
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-cyan-300 text-xs font-semibold shadow-inner">
@@ -298,42 +300,42 @@
                     </a>
                 </div>
 
-                <!-- Grid Statistik Ringkasan (Icon Pop Ups Style Enterprise) -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 border-t border-white/10 max-w-3xl mx-auto text-left">
-                    <div class="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-lg shrink-0">
+                <!-- Grid Statistik Ringkasan -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-10 border-t border-white/10 max-w-3xl mx-auto text-left">
+                    <div class="bg-white/5 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/10 flex items-center gap-2.5 sm:gap-3">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-base sm:text-lg shrink-0">
                             <i class="fa-solid fa-users"></i>
                         </div>
                         <div>
-                            <div class="text-white font-extrabold text-base">100+</div>
-                            <div class="text-indigo-200/70 text-[11px]">Mitra Pengusaha</div>
+                            <div class="text-white font-extrabold text-sm sm:text-base">100+</div>
+                            <div class="text-indigo-200/70 text-[10px] sm:text-[11px]">Mitra Pengusaha</div>
                         </div>
                     </div>
-                    <div class="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center text-lg shrink-0">
+                    <div class="bg-white/5 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/10 flex items-center gap-2.5 sm:gap-3">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center text-base sm:text-lg shrink-0">
                             <i class="fa-solid fa-code-commit"></i>
                         </div>
                         <div>
-                            <div class="text-white font-extrabold text-base">15+</div>
-                            <div class="text-indigo-200/70 text-[11px]">Sistem Aplikasi</div>
+                            <div class="text-white font-extrabold text-sm sm:text-base">15+</div>
+                            <div class="text-indigo-200/70 text-[10px] sm:text-[11px]">Sistem Aplikasi</div>
                         </div>
                     </div>
-                    <div class="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-lg shrink-0">
+                    <div class="bg-white/5 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/10 flex items-center gap-2.5 sm:gap-3">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-base sm:text-lg shrink-0">
                             <i class="fa-solid fa-headset"></i>
                         </div>
                         <div>
-                            <div class="text-white font-extrabold text-base">24/7</div>
-                            <div class="text-indigo-200/70 text-[11px]">Dukungan Support</div>
+                            <div class="text-white font-extrabold text-sm sm:text-base">24/7</div>
+                            <div class="text-indigo-200/70 text-[10px] sm:text-[11px]">Dukungan Support</div>
                         </div>
                     </div>
-                    <div class="bg-white/5 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-lg shrink-0">
+                    <div class="bg-white/5 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/10 flex items-center gap-2.5 sm:gap-3">
+                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-base sm:text-lg shrink-0">
                             <i class="fa-solid fa-star"></i>
                         </div>
                         <div>
-                            <div class="text-white font-extrabold text-base">99.9%</div>
-                            <div class="text-indigo-200/70 text-[11px]">Kepuasan Klien</div>
+                            <div class="text-white font-extrabold text-sm sm:text-base">99.9%</div>
+                            <div class="text-indigo-200/70 text-[10px] sm:text-[11px]">Kepuasan Klien</div>
                         </div>
                     </div>
                 </div>
@@ -341,8 +343,8 @@
             </div>
         </section>
         
-        <!-- SECTION 2: LAYANAN (SERVICES DENGAN BADGE DEKORATIF) -->
-        <section id="layanan" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <!-- SECTION 2: LAYANAN -->
+        <section id="layanan" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-down" data-aos-duration="800">
                 <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 flex items-center justify-center w-max mx-auto gap-2">
                     <i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i> Solusi Teknologi Terintegrasi
@@ -352,80 +354,80 @@
             </div>
 
             <div class="space-y-6">
-                <div data-aos="zoom-in-up" data-aos-duration="700" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden group">
-                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
+                <div data-aos="zoom-in-up" data-aos-duration="700" class="custom-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 sm:gap-8 items-center relative overflow-hidden group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-3xl sm:text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
                         <i class="fa-solid fa-laptop-code"></i>
                     </div>
                     <div class="flex-grow space-y-2 text-center md:text-left">
                         <div class="inline-flex items-center gap-1 text-[11px] font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50 px-2.5 py-0.5 rounded-md">
                             <i class="fa-solid fa-check-double"></i> Custom Engineering
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900">Developing (Pengembangan Software Custom)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Pengembangan aplikasi kustom (Desktop, Web, & Mobile) disesuaikan persis dengan skema bisnis dan workflow perusahaan Anda.</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Developing (Pengembangan Software Custom)</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Pengembangan aplikasi kustom (Desktop, Web, & Mobile) disesuaikan persis dengan skema bisnis dan workflow perusahaan Anda.</p>
                     </div>
                     <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20tertarik%20Developing" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors shadow-md">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Konsultasi
                     </a>
                 </div>
 
-                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="100" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden group">
-                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
+                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="100" class="custom-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 sm:gap-8 items-center relative overflow-hidden group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-3xl sm:text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
                         <i class="fa-solid fa-lightbulb"></i>
                     </div>
                     <div class="flex-grow space-y-2 text-center md:text-left">
                         <div class="inline-flex items-center gap-1 text-[11px] font-bold text-cyan-600 uppercase tracking-wider bg-cyan-50 px-2.5 py-0.5 rounded-md">
                             <i class="fa-solid fa-chart-line"></i> IT Architecture
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900">Consulting (Konsultasi Sistem & IT)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Analisis mendalam mengenai sistem operasional, pencatatan stok, dan pemberian rekomendasi cetak biru IT terbaik.</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Consulting (Konsultasi Sistem & IT)</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Analisis mendalam mengenai sistem operasional, pencatatan stok, dan pemberian rekomendasi cetak biru IT terbaik.</p>
                     </div>
                     <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20tertarik%20Consulting" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors shadow-md">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Konsultasi
                     </a>
                 </div>
 
-                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="200" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden group">
-                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
+                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="200" class="custom-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 sm:gap-8 items-center relative overflow-hidden group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-3xl sm:text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
                         <i class="fa-solid fa-headset"></i>
                     </div>
                     <div class="flex-grow space-y-2 text-center md:text-left">
                         <div class="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 uppercase tracking-wider bg-emerald-50 px-2.5 py-0.5 rounded-md">
                             <i class="fa-solid fa-clock"></i> SLA Guarantee
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900">Supporting (Dukungan & Technical Support)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Layanan bantuan teknis responsif via remote AnyDesk, WhatsApp, telepon, hingga maintenance *on-site*.</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Supporting (Dukungan & Technical Support)</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Layanan bantuan teknis responsif via remote AnyDesk, WhatsApp, telepon, hingga maintenance *on-site*.</p>
                     </div>
                     <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20butuh%20Supporting" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors shadow-md">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Bantuan
                     </a>
                 </div>
 
-                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="300" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden group">
-                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
+                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="300" class="custom-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 sm:gap-8 items-center relative overflow-hidden group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-3xl sm:text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
                         <i class="fa-solid fa-chalkboard-user"></i>
                     </div>
                     <div class="flex-grow space-y-2 text-center md:text-left">
                         <div class="inline-flex items-center gap-1 text-[11px] font-bold text-purple-600 uppercase tracking-wider bg-purple-50 px-2.5 py-0.5 rounded-md">
                             <i class="fa-solid fa-user-graduate"></i> Staff Readiness
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900">Training (Pelatihan SDM & User)</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Sesi edukasi dan bimbingan penggunaan aplikasi secara komprehensif untuk staf kasir, admin gudang, hingga pihak manajemen.</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Training (Pelatihan SDM & User)</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Sesi edukasi dan bimbingan penggunaan aplikasi secara komprehensif untuk staf kasir, admin gudang, hingga pihak manajemen.</p>
                     </div>
                     <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20butuh%20Training" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors shadow-md">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Jadwal Training
                     </a>
                 </div>
 
-                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="400" class="custom-card rounded-3xl p-8 flex flex-col md:flex-row gap-8 items-center relative overflow-hidden group">
-                    <div class="w-20 h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
+                <div data-aos="zoom-in-up" data-aos-duration="700" data-aos-delay="400" class="custom-card rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row gap-6 sm:gap-8 items-center relative overflow-hidden group">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-3xl sm:text-4xl shrink-0 border border-indigo-100 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-md">
                         <i class="fa-solid fa-database"></i>
                     </div>
                     <div class="flex-grow space-y-2 text-center md:text-left">
                         <div class="inline-flex items-center gap-1 text-[11px] font-bold text-blue-600 uppercase tracking-wider bg-blue-50 px-2.5 py-0.5 rounded-md">
                             <i class="fa-solid fa-cloud"></i> Real-time Sync
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900">Link and Data Service</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed">Integrasi basis data online antar cabang toko maupun gudang secara *real-time* dengan protokol enkripsi data aman.</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Link and Data Service</h3>
+                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">Integrasi basis data online antar cabang toko maupun gudang secara *real-time* dengan protokol enkripsi data aman.</p>
                     </div>
                     <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20tertarik%20Link%20Data%20Service" target="_blank" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shrink-0 transition-colors shadow-md">
                         <i class="fa-brands fa-whatsapp text-lg"></i> Konsultasi Data
@@ -434,8 +436,8 @@
             </div>
         </section>
 
-        <!-- SECTION 3: APLIKASI (PRODUCTS DENGAN ICON KARTU LENGKAP) -->
-        <section id="aplikasi" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <!-- SECTION 3: APLIKASI -->
+        <section id="aplikasi" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="text-center max-w-3xl mx-auto mb-10" data-aos="zoom-in" data-aos-duration="700">
                 <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-flex items-center gap-2">
                     <i class="fa-solid fa-boxes-stacked text-indigo-500"></i> KATALOG SOFTWARE
@@ -449,71 +451,71 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 py-4">
-                <div onclick="openModal('Aplikasi Toko Meubel', 'Software terpadu untuk pencatatan stok furniture, pemesanan kustom kayu, kasir penjualan, dan cicilan/DP pembeli.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-couch text-3xl"></i></div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5 py-4">
+                <div onclick="openModal('Aplikasi Toko Meubel', 'Software terpadu untuk pencatatan stok furniture, pemesanan kustom kayu, kasir penjualan, dan cicilan/DP pembeli.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-couch text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Meubel</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Petshop', 'Sistem khusus toko pakan, booking grooming hewan, penitipan pet hotel, dan rekam medis pasien oleh dokter hewan.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-paw text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Petshop', 'Sistem khusus toko pakan, booking grooming hewan, penitipan pet hotel, dan rekam medis pasien oleh dokter hewan.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-paw text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Petshop</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Bengkel Motor dan Variasi', 'Kelola pendaftaran servis motor, nota pembelian sparepart, komisi mekanik, dan garansi pekerjaan.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-wrench text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Bengkel Motor dan Variasi', 'Kelola pendaftaran servis motor, nota pembelian sparepart, komisi mekanik, dan garansi pekerjaan.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-wrench text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Bengkel Motor</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Body Repair', 'Modul pencatatan estimasi klaim asuransi, estimasi bahan cat, progres pengerjaan mobil, dan tagihan SPK.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-spray-can text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Body Repair', 'Modul pencatatan estimasi klaim asuransi, estimasi bahan cat, progres pengerjaan mobil, dan tagihan SPK.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-spray-can text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Body Repair</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Toko Bangunan', 'Software stok eceran & grosir bahan bangunan, pencatatan pengiriman armada truk, serta hutang piutang kontraktor.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-trowel-bricks text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Toko Bangunan', 'Software stok eceran & grosir bahan bangunan, pencatatan pengiriman armada truk, serta hutang piutang kontraktor.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-trowel-bricks text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Bangunan</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Mini Market', 'Sistem Kasir POS barcode super cepat, cetak struk thermal, manajemen diskon member, dan laporan laba rugi.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-barcode text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Mini Market', 'Sistem Kasir POS barcode super cepat, cetak struk thermal, manajemen diskon member, dan laporan laba rugi.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-barcode text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Mini Market</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Toko Pancing', 'Pencatatan ribuan variasi joran, umpan, kail, perlengkapan pancing, dan sistem kasir grosir/eceran.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-fish text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Toko Pancing', 'Pencatatan ribuan variasi joran, umpan, kail, perlengkapan pancing, dan sistem kasir grosir/eceran.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-fish text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Pancing</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Depo / Grosir', 'Sistem pergudangan bertingkat, penjualan grosir bertingkat, stok kontainer, serta laporan salesman harian.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-boxes-packing text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Depo / Grosir', 'Sistem pergudangan bertingkat, penjualan grosir bertingkat, stok kontainer, serta laporan salesman harian.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-boxes-packing text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Depo / Grosir</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Distributor Buku', 'Pencatatan master buku, penerbit, nomor ISBN, konsinyasi toko buku, dan komisi agen penerbit.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-book-journal-whills text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Distributor Buku', 'Pencatatan master buku, penerbit, nomor ISBN, konsinyasi toko buku, dan komisi agen penerbit.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-book-journal-whills text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Distributor Buku</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Toko Komputer', 'Pencatatan nomor seri/SN barang elektronik, garansi tukar unit, kasir rakitan PC, dan teknisi servis.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-desktop text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Toko Komputer', 'Pencatatan nomor seri/SN barang elektronik, garansi tukar unit, kasir rakitan PC, dan teknisi servis.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-desktop text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Komputer</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Gaji / Payroll', 'Perhitungan gaji pokok, insentif lembur, presensi absensi, potongan BPJS, dan cetak slip gaji karyawan.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-file-invoice-dollar text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Gaji / Payroll', 'Perhitungan gaji pokok, insentif lembur, presensi absensi, potongan BPJS, dan cetak slip gaji karyawan.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-file-invoice-dollar text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Payroll / Gaji</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Farmasi / Apotek', 'Sistem obat resep & racikan, pengelompokan batch number, expired date BPOM, dan laporan psikotropika.')" class="app-card-item custom-card rounded-2xl p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[175px] group">
-                    <div class="p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-pills text-3xl"></i></div>
+                <div onclick="openModal('Aplikasi Farmasi / Apotek', 'Sistem obat resep & racikan, pengelompokan batch number, expired date BPOM, dan laporan psikotropika.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                    <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-pills text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Farmasi / Apotek</h3>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: KLIEN (CLIENTS MARQUEE WITH BADGES) -->
-        <section id="klien" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <!-- SECTION 4: KLIEN -->
+        <section id="klien" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="text-center max-w-3xl mx-auto mb-10" data-aos="zoom-in" data-aos-duration="700">
                 <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-flex items-center gap-2">
                     <i class="fa-solid fa-handshake-simple text-indigo-500"></i> PORTOFOLIO MITRA
@@ -527,7 +529,7 @@
                 </div>
             </div>
 
-            <div class="marquee-container overflow-hidden relative py-4 space-y-6">
+            <div class="marquee-container overflow-hidden relative py-4 space-y-6 max-w-full">
                 <!-- BARIS 1 -->
                 <div class="marquee-track flex gap-5">
                     <div class="flex gap-5">
@@ -644,9 +646,9 @@
             </div>
         </section>
 
-        <!-- SECTION 5: TENTANG (ABOUT DENGAN FORM MODERN) -->
-        <section id="tentang" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12 items-start">
+        <!-- SECTION 5: TENTANG -->
+        <section id="tentang" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-start">
                 <div class="space-y-6 pt-1" data-aos="zoom-in-right" data-aos-duration="800">
                     <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-flex items-center gap-2">
                         <i class="fa-solid fa-building text-indigo-500"></i> Profil Perusahaan
@@ -674,7 +676,7 @@
                     </div>
                 </div>
 
-                <div data-aos="zoom-in-left" data-aos-duration="800" class="custom-card p-8 rounded-3xl relative overflow-hidden">
+                <div data-aos="zoom-in-left" data-aos-duration="800" class="custom-card p-6 sm:p-8 rounded-3xl relative overflow-hidden">
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl">
                             <i class="fa-solid fa-paper-plane"></i>
@@ -731,31 +733,31 @@
         </div>
     </div>
 
-    <!-- FLOATING BUTTONS (KIRI: MENU SHARE & KANAN: WHATSAPP) -->
-    <div class="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[999] flex flex-col items-start">
+    <!-- FLOATING BUTTONS (KIRI: MENU SHARE & KANAN: WHATSAPP - POSISI DINAIKKAN DI MOBILE) -->
+    <div class="fixed bottom-16 sm:bottom-6 left-4 sm:left-6 z-[999] flex flex-col items-start">
         <div id="socialSubMenu" class="hidden flex-col gap-3 mb-3 transition-all duration-300">
-            <a href="https://youtube.com" target="_blank" class="w-12 h-12 sm:w-14 sm:h-14 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110" aria-label="YouTube">
-                <i class="fa-brands fa-youtube text-xl sm:text-2xl"></i>
+            <a href="https://youtube.com" target="_blank" class="w-11 h-11 sm:w-14 sm:h-14 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110" aria-label="YouTube">
+                <i class="fa-brands fa-youtube text-lg sm:text-2xl"></i>
             </a>
-            <a href="https://facebook.com" target="_blank" class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110" aria-label="Facebook">
-                <i class="fa-brands fa-facebook-f text-xl sm:text-2xl"></i>
+            <a href="https://facebook.com" target="_blank" class="w-11 h-11 sm:w-14 sm:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110" aria-label="Facebook">
+                <i class="fa-brands fa-facebook-f text-lg sm:text-2xl"></i>
             </a>
-            <a href="https://wa.me/6285220419992" target="_blank" class="w-12 h-12 sm:w-14 sm:h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110" aria-label="WhatsApp">
-                <i class="fa-brands fa-whatsapp text-xl sm:text-2xl"></i>
+            <a href="https://wa.me/6285220419992" target="_blank" class="w-11 h-11 sm:w-14 sm:h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110" aria-label="WhatsApp">
+                <i class="fa-brands fa-whatsapp text-lg sm:text-2xl"></i>
             </a>
         </div>
-        <button type="button" onclick="toggleSocialMenu()" class="w-12 h-12 sm:w-14 sm:h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110 focus:outline-none border-0 p-0 m-0 cursor-pointer" aria-label="Bagikan">
-            <i class="fa-solid fa-share-nodes text-xl sm:text-2xl"></i>
+        <button type="button" onclick="toggleSocialMenu()" class="w-11 h-11 sm:w-14 sm:h-14 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110 focus:outline-none border-0 p-0 m-0 cursor-pointer" aria-label="Bagikan">
+            <i class="fa-solid fa-share-nodes text-lg sm:text-2xl"></i>
         </button>
     </div>
 
-    <!-- Floating WhatsApp Button di Pojok Kanan Bawah -->
-    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[999] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-xl sm:text-2xl shadow-2xl transition-all transform hover:scale-110" aria-label="WhatsApp">
+    <!-- Floating WhatsApp Button di Pojok Kanan Bawah (POSISI DINAIKKAN DI MOBILE) -->
+    <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="fixed bottom-16 sm:bottom-6 right-4 sm:right-6 z-[999] w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-lg sm:text-2xl shadow-2xl transition-all transform hover:scale-110" aria-label="WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <!-- Footer Modern Enterprise -->
-    <footer class="bg-indigo-950 text-slate-300 pt-12 pb-8 text-xs mt-auto border-t border-indigo-900">
+    <footer class="bg-indigo-950 text-slate-300 pt-12 pb-16 sm:pb-8 text-xs mt-auto border-t border-indigo-900 w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 grid md:grid-cols-3 gap-8 pb-8 border-b border-indigo-900 text-center md:text-left">
             <div>
                 <h4 class="font-bold text-white mb-3 text-sm flex items-center justify-center md:justify-start gap-2">
@@ -776,7 +778,7 @@
                 <span class="text-lg font-black tracking-wider text-white">ACCESS MEDIA</span>
             </div>
         </div>
-        <div class="text-center pt-6 text-indigo-400">
+        <div class="text-center pt-6 pb-4 sm:pb-0 text-indigo-400 px-4">
             <p>&copy; 2026 Access Media - https://accessmedia.co.id/. All Rights Reserved.</p>
         </div>
     </footer>
@@ -790,7 +792,7 @@
             duration: 800
         });
 
-        /* Fitur ScrollSpy: Otomatis Mengganti Indikator Kapsul Aktif Saat Di-scroll */
+        /* Fitur ScrollSpy */
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
 
@@ -812,7 +814,7 @@
             });
         });
 
-        /* Toggle Menu Share Kiri Bawah */
+        /* Toggle Menu Share */
         function toggleSocialMenu() {
             const menu = document.getElementById('socialSubMenu');
             if (menu) {
@@ -880,7 +882,7 @@
             modal.classList.remove('flex');
         }
 
-        /* --- LOGIKA TOGGLE DARK MODE & IKON BULAN/MATAHARI --- */
+        /* Toggle Dark Mode */
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeMoon = document.getElementById('themeMoon');
         const themeSun = document.getElementById('themeSun');
