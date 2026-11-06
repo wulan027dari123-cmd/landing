@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth overflow-x-hidden">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -44,9 +44,13 @@
     </script>
     
     <style>
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden !important;
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 110px;
+        }
+
+        body {
+            overflow-x: hidden;
         }
 
         .custom-card {
@@ -91,11 +95,25 @@
         }
 
         /* Nav Link Active State */
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            color: #334155;
+        }
+        
+        .nav-link i {
+            color: #6366f1;
+            transition: color 0.2s ease-in-out;
+        }
+
         .nav-link.active {
             background-color: #4f46e5 !important;
             color: #ffffff !important;
             box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
             font-weight: 700;
+        }
+
+        .nav-link.active i {
+            color: #ffffff !important;
         }
 
         /* Modal Animation */
@@ -108,7 +126,6 @@
             animation: modalShow 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Ambient Glow Effect */
         .glow-orb {
             position: absolute;
             border-radius: 50%;
@@ -134,6 +151,14 @@
         body.dark-mode header h1,
         body.dark-mode header .font-bold {
             color: #ffffff !important;
+        }
+
+        body.dark-mode .nav-link {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark-mode .nav-link i {
+            color: #818cf8 !important;
         }
 
         body.dark-mode #themeToggle {
@@ -184,10 +209,10 @@
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen overflow-x-hidden w-full">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen w-full">
 
-    <!-- Header / Navbar Sticky Container -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-[#0b0f19]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300 w-full overflow-hidden">
+    <!-- Header / Navbar FIXED -->
+    <header class="fixed top-0 left-0 w-full z-[100] bg-white/95 dark:bg-[#0b0f19]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
@@ -197,22 +222,22 @@
                     <span class="text-base sm:text-lg font-black tracking-wide text-slate-900 dark:text-white">ACCESS MEDIA</span>
                 </a>
 
-                <!-- Navigation Menu -->
+                <!-- Navigation Menu (5 Navigasi Utama) -->
                 <nav class="hidden md:flex items-center space-x-1 bg-slate-100 dark:bg-slate-900 p-1.5 rounded-full border border-slate-200 dark:border-slate-800">
-                    <a href="#home" id="nav-home" class="nav-link active px-5 py-2 rounded-full text-sm font-medium transition-all text-slate-600 dark:text-slate-300">
+                    <a href="#home" class="nav-link active px-5 py-2 rounded-full text-sm font-medium transition-all">
                         <i class="fa-solid fa-house mr-1.5 text-xs"></i>Home
                     </a>
-                    <a href="#layanan" id="nav-layanan" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all text-slate-600 dark:text-slate-300">
+                    <a href="#layanan" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all">
                         <i class="fa-solid fa-cubes mr-1.5 text-xs"></i>Layanan
                     </a>
-                    <a href="#aplikasi" id="nav-aplikasi" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all text-slate-600 dark:text-slate-300">
+                    <a href="#aplikasi" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all">
                         <i class="fa-solid fa-layer-group mr-1.5 text-xs"></i>Aplikasi
                     </a>
-                    <a href="#klien" id="nav-klien" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all text-slate-600 dark:text-slate-300">
+                    <a href="#klien" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all">
                         <i class="fa-solid fa-building-user mr-1.5 text-xs"></i>Klien
                     </a>
-                    <a href="#tentang" id="nav-tentang" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all text-slate-600 dark:text-slate-300">
-                        <i class="fa-solid fa-circle-info mr-1.5 text-xs"></i>Tentang
+                    <a href="#tentang" class="nav-link px-5 py-2 rounded-full text-sm font-medium transition-all">
+                        <i class="fa-solid fa-building mr-1.5 text-xs"></i>Tentang
                     </a>
                 </nav>
 
@@ -246,7 +271,7 @@
             <a href="#layanan" onclick="toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa-solid fa-cubes mr-2 text-indigo-500"></i>Layanan</a>
             <a href="#aplikasi" onclick="toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa-solid fa-layer-group mr-2 text-indigo-500"></i>Aplikasi</a>
             <a href="#klien" onclick="toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa-solid fa-building-user mr-2 text-indigo-500"></i>Klien</a>
-            <a href="#tentang" onclick="toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa-solid fa-circle-info mr-2 text-indigo-500"></i>Tentang</a>
+            <a href="#tentang" onclick="toggleMobileMenu()" class="block w-full text-left px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"><i class="fa-solid fa-building mr-2 text-indigo-500"></i>Tentang</a>
             <div class="pt-2">
                 <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="flex items-center justify-center gap-2 w-full bg-cyan-500 text-white px-4 py-2.5 rounded-xl font-semibold shadow-md">
                     <i class="fa-brands fa-whatsapp"></i> Konsultasi Gratis
@@ -256,24 +281,19 @@
     </header>
 
     <!-- Main Container Body -->
-    <main class="flex-grow relative w-full overflow-hidden">
+    <main class="flex-grow relative w-full mt-20">
 
         <!-- SECTION 1: HOME -->
-        <section id="home" class="relative min-h-[680px] pt-24 pb-20 px-4 flex flex-col justify-center items-center text-center overflow-hidden bg-slate-900 w-full">
-            <!-- Background Foto Jabat Tangan -->
+        <section id="home" class="relative min-h-[680px] pt-16 pb-20 px-4 flex flex-col justify-center items-center text-center overflow-hidden bg-slate-900 w-full">
             <div class="absolute inset-0 z-0 overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1920&q=80" alt="Jabat Tangan Kerja Sama" class="w-full h-full object-cover object-center opacity-35">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/75 to-[#090d16]/85"></div>
             </div>
 
-            <!-- Glow Effect Orbs -->
             <div class="glow-orb w-72 h-72 sm:w-96 sm:h-96 bg-cyan-500 top-10 left-0"></div>
             <div class="glow-orb w-72 h-72 sm:w-96 sm:h-96 bg-indigo-600 bottom-10 right-0"></div>
 
-            <!-- Konten Utama Hero Section -->
             <div class="max-w-4xl mx-auto space-y-6 z-10 relative w-full px-2" data-aos="zoom-in" data-aos-duration="900">
-                
-                <!-- Badge Online Tech Enterprise -->
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-cyan-300 text-xs font-semibold shadow-inner">
                     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                     <i class="fa-solid fa-shield-halved text-cyan-400"></i> Modern Business Software Platform
@@ -300,7 +320,6 @@
                     </a>
                 </div>
 
-                <!-- Grid Statistik Ringkasan -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 pt-10 border-t border-white/10 max-w-3xl mx-auto text-left">
                     <div class="bg-white/5 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl border border-white/10 flex items-center gap-2.5 sm:gap-3">
                         <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-base sm:text-lg shrink-0">
@@ -344,7 +363,7 @@
         </section>
         
         <!-- SECTION 2: LAYANAN -->
-        <section id="layanan" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <section id="layanan" class="py-16 pt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-down" data-aos-duration="800">
                 <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 flex items-center justify-center w-max mx-auto gap-2">
                     <i class="fa-solid fa-wand-magic-sparkles text-indigo-500"></i> Solusi Teknologi Terintegrasi
@@ -437,7 +456,7 @@
         </section>
 
         <!-- SECTION 3: APLIKASI -->
-        <section id="aplikasi" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <section id="aplikasi" class="py-12 pt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="text-center max-w-3xl mx-auto mb-10" data-aos="zoom-in" data-aos-duration="700">
                 <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-flex items-center gap-2">
                     <i class="fa-solid fa-boxes-stacked text-indigo-500"></i> KATALOG SOFTWARE
@@ -452,62 +471,62 @@
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5 py-4">
-                <div onclick="openModal('Aplikasi Toko Meubel', 'Software terpadu untuk pencatatan stok furniture, pemesanan kustom kayu, kasir penjualan, dan cicilan/DP pembeli.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Toko Meubel', 'Software terpadu untuk pencatatan stok furniture, pemesanan kustom kayu, kasir penjualan, dan cicilan/DP pembeli.', 'fa-couch')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-couch text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Meubel</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Petshop', 'Sistem khusus toko pakan, booking grooming hewan, penitipan pet hotel, dan rekam medis pasien oleh dokter hewan.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Petshop', 'Sistem khusus toko pakan, booking grooming hewan, penitipan pet hotel, dan rekam medis pasien oleh dokter hewan.', 'fa-paw')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-paw text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Petshop</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Bengkel Motor dan Variasi', 'Kelola pendaftaran servis motor, nota pembelian sparepart, komisi mekanik, dan garansi pekerjaan.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Bengkel Motor dan Variasi', 'Kelola pendaftaran servis motor, nota pembelian sparepart, komisi mekanik, dan garansi pekerjaan.', 'fa-wrench')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-wrench text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Bengkel Motor</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Body Repair', 'Modul pencatatan estimasi klaim asuransi, estimasi bahan cat, progres pengerjaan mobil, dan tagihan SPK.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Body Repair', 'Modul pencatatan estimasi klaim asuransi, estimasi bahan cat, progres pengerjaan mobil, dan tagihan SPK.', 'fa-spray-can')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-spray-can text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Body Repair</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Toko Bangunan', 'Software stok eceran & grosir bahan bangunan, pencatatan pengiriman armada truk, serta hutang piutang kontraktor.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Toko Bangunan', 'Software stok eceran & grosir bahan bangunan, pencatatan pengiriman armada truk, serta hutang piutang kontraktor.', 'fa-trowel-bricks')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-trowel-bricks text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Bangunan</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Mini Market', 'Sistem Kasir POS barcode super cepat, cetak struk thermal, manajemen diskon member, dan laporan laba rugi.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Mini Market', 'Sistem Kasir POS barcode super cepat, cetak struk thermal, manajemen diskon member, dan laporan laba rugi.', 'fa-barcode')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-barcode text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Mini Market</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Toko Pancing', 'Pencatatan ribuan variasi joran, umpan, kail, perlengkapan pancing, dan sistem kasir grosir/eceran.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Toko Pancing', 'Pencatatan ribuan variasi joran, umpan, kail, perlengkapan pancing, dan sistem kasir grosir/eceran.', 'fa-fish')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-fish text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Pancing</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Depo / Grosir', 'Sistem pergudangan bertingkat, penjualan grosir bertingkat, stok kontainer, serta laporan salesman harian.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Depo / Grosir', 'Sistem pergudangan bertingkat, penjualan grosir bertingkat, stok kontainer, serta laporan salesman harian.', 'fa-boxes-packing')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-boxes-packing text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Depo / Grosir</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Distributor Buku', 'Pencatatan master buku, penerbit, nomor ISBN, konsinyasi toko buku, dan komisi agen penerbit.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Distributor Buku', 'Pencatatan master buku, penerbit, nomor ISBN, konsinyasi toko buku, dan komisi agen penerbit.', 'fa-book-journal-whills')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-book-journal-whills text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Distributor Buku</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Toko Komputer', 'Pencatatan nomor seri/SN barang elektronik, garansi tukar unit, kasir rakitan PC, dan teknisi servis.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Toko Komputer', 'Pencatatan nomor seri/SN barang elektronik, garansi tukar unit, kasir rakitan PC, dan teknisi servis.', 'fa-desktop')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-desktop text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Toko Komputer</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Gaji / Payroll', 'Perhitungan gaji pokok, insentif lembur, presensi absensi, potongan BPJS, dan cetak slip gaji karyawan.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Gaji / Payroll', 'Perhitungan gaji pokok, insentif lembur, presensi absensi, potongan BPJS, dan cetak slip gaji karyawan.', 'fa-file-invoice-dollar')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-file-invoice-dollar text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Payroll / Gaji</h3>
                 </div>
 
-                <div onclick="openModal('Aplikasi Farmasi / Apotek', 'Sistem obat resep & racikan, pengelompokan batch number, expired date BPOM, dan laporan psikotropika.')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
+                <div onclick="openModal('Aplikasi Farmasi / Apotek', 'Sistem obat resep & racikan, pengelompokan batch number, expired date BPOM, dan laporan psikotropika.', 'fa-pills')" class="app-card-item custom-card rounded-2xl p-4 sm:p-5 text-center cursor-pointer flex flex-col items-center justify-between h-[165px] sm:h-[175px] group">
                     <div class="p-3.5 sm:p-4 rounded-2xl bg-indigo-50 text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all my-auto shadow-inner"><i class="fa-solid fa-pills text-2xl sm:text-3xl"></i></div>
                     <h3 class="text-xs font-bold text-slate-800 group-hover:text-indigo-600 transition-colors leading-tight">Aplikasi Farmasi / Apotek</h3>
                 </div>
@@ -515,7 +534,7 @@
         </section>
 
         <!-- SECTION 4: KLIEN -->
-        <section id="klien" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <section id="klien" class="py-12 pt-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="text-center max-w-3xl mx-auto mb-10" data-aos="zoom-in" data-aos-duration="700">
                 <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-flex items-center gap-2">
                     <i class="fa-solid fa-handshake-simple text-indigo-500"></i> PORTOFOLIO MITRA
@@ -533,54 +552,54 @@
                 <!-- BARIS 1 -->
                 <div class="marquee-track flex gap-5">
                     <div class="flex gap-5">
-                        <div onclick="openModal('Dinas Kesehatan Kab. Subang', 'Mitra instansi pemerintah daerah.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Dinas Kesehatan Kab. Subang', 'Mitra instansi pemerintah daerah.', 'fa-building-columns')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="dinkes.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Dinkes Kab. Subang</h3>
                         </div>
-                        <div onclick="openModal('BLUD Kabupaten Subang', 'Sistem akuntansi keuangan BLUD.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('BLUD Kabupaten Subang', 'Sistem akuntansi keuangan BLUD.', 'fa-file-invoice')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="subang.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">BLUD Kab. Subang</h3>
                         </div>
-                        <div onclick="openModal('LPT Saraswati', 'Lembaga pendidikan tinggi.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('LPT Saraswati', 'Lembaga pendidikan tinggi.', 'fa-graduation-cap')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="saraswati.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">LPT Saraswati</h3>
                         </div>
-                        <div onclick="openModal('ABM Computer', 'Pusat penjualan perangkat keras.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('ABM Computer', 'Pusat penjualan perangkat keras.', 'fa-computer')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="abm.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">ABM Computer</h3>
                         </div>
-                        <div onclick="openModal('Pondok Pesantren Al-Hasan Ciamis', 'Manajemen keuangan pesantren.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Pondok Pesantren Al-Hasan Ciamis', 'Manajemen keuangan pesantren.', 'fa-mosque')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="alhasan.jpg" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Al-Hasan Ciamis</h3>
                         </div>
-                        <div onclick="openModal('BMT Al-Muhajirin', 'Software akuntansi syariah.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('BMT Al-Muhajirin', 'Software akuntansi syariah.', 'fa-hand-holding-dollar')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="almuhajirin.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">BMT Al-Muhajirin</h3>
                         </div>
                     </div>
                     <!-- DUPLIKAT BARIS 1 -->
                     <div class="flex gap-5">
-                        <div onclick="openModal('Dinas Kesehatan Kab. Subang', 'Mitra instansi pemerintah daerah.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Dinas Kesehatan Kab. Subang', 'Mitra instansi pemerintah daerah.', 'fa-building-columns')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="dinkes.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Dinkes Kab. Subang</h3>
                         </div>
-                        <div onclick="openModal('BLUD Kabupaten Subang', 'Sistem akuntansi keuangan BLUD.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('BLUD Kabupaten Subang', 'Sistem akuntansi keuangan BLUD.', 'fa-file-invoice')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="subang.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">BLUD Kab. Subang</h3>
                         </div>
-                        <div onclick="openModal('LPT Saraswati', 'Lembaga pendidikan tinggi.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('LPT Saraswati', 'Lembaga pendidikan tinggi.', 'fa-graduation-cap')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="saraswati.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">LPT Saraswati</h3>
                         </div>
-                        <div onclick="openModal('ABM Computer', 'Pusat penjualan perangkat keras.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('ABM Computer', 'Pusat penjualan perangkat keras.', 'fa-computer')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="abm.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">ABM Computer</h3>
                         </div>
-                        <div onclick="openModal('Pondok Pesantren Al-Hasan Ciamis', 'Manajemen keuangan pesantren.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Pondok Pesantren Al-Hasan Ciamis', 'Manajemen keuangan pesantren.', 'fa-mosque')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="alhasan.jpg" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Al-Hasan Ciamis</h3>
                         </div>
-                        <div onclick="openModal('BMT Al-Muhajirin', 'Software akuntansi syariah.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('BMT Al-Muhajirin', 'Software akuntansi syariah.', 'fa-hand-holding-dollar')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="almuhajirin.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">BMT Al-Muhajirin</h3>
                         </div>
@@ -590,54 +609,54 @@
                 <!-- BARIS 2 -->
                 <div class="marquee-track-reverse flex gap-5">
                     <div class="flex gap-5">
-                        <div onclick="openModal('Padaringan Tasikmalaya', 'Pusat oleh-oleh.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Padaringan Tasikmalaya', 'Pusat oleh-oleh.', 'fa-store')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="padaringan.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Padaringan</h3>
                         </div>
-                        <div onclick="openModal('SMARTNEUTRON', 'Lembaga bimbingan belajar.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('SMARTNEUTRON', 'Lembaga bimbingan belajar.', 'fa-book-open')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="smartneutron.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">SMARTNEUTRON</h3>
                         </div>
-                        <div onclick="openModal('CV. Niaga Sejahtera', 'Distributor barang konsumsi.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('CV. Niaga Sejahtera', 'Distributor barang konsumsi.', 'fa-truck')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="cvns.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">CV. Niaga Sejahtera</h3>
                         </div>
-                        <div onclick="openModal('Grosir Berkah Jaya', 'Grosir kebutuhan pokok.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Grosir Berkah Jaya', 'Grosir kebutuhan pokok.', 'fa-basket-shopping')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="gbj.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Grosir Berkah Jaya</h3>
                         </div>
-                        <div onclick="openModal('Pangkalan Pancing Tasikmalaya', 'Toko alat pancing.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Pangkalan Pancing Tasikmalaya', 'Toko alat pancing.', 'fa-fish-fins')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="ppt.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Pangkalan Pancing</h3>
                         </div>
-                        <div onclick="openModal('COBOY Petshop', 'Klinik hewan dan petshop.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('COBOY Petshop', 'Klinik hewan dan petshop.', 'fa-cat')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="coboy.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">COBOY Petshop</h3>
                         </div>
                     </div>
                     <!-- DUPLIKAT BARIS 2 -->
                     <div class="flex gap-5">
-                        <div onclick="openModal('Padaringan Tasikmalaya', 'Pusat oleh-oleh.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Padaringan Tasikmalaya', 'Pusat oleh-oleh.', 'fa-store')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="padaringan.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Padaringan</h3>
                         </div>
-                        <div onclick="openModal('SMARTNEUTRON', 'Lembaga bimbingan belajar.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('SMARTNEUTRON', 'Lembaga bimbingan belajar.', 'fa-book-open')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="smartneutron.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">SMARTNEUTRON</h3>
                         </div>
-                        <div onclick="openModal('CV. Niaga Sejahtera', 'Distributor barang konsumsi.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('CV. Niaga Sejahtera', 'Distributor barang konsumsi.', 'fa-truck')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="cvns.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">CV. Niaga Sejahtera</h3>
                         </div>
-                        <div onclick="openModal('Grosir Berkah Jaya', 'Grosir kebutuhan pokok.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Grosir Berkah Jaya', 'Grosir kebutuhan pokok.', 'fa-basket-shopping')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="gbj.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Grosir Berkah Jaya</h3>
                         </div>
-                        <div onclick="openModal('Pangkalan Pancing Tasikmalaya', 'Toko alat pancing.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('Pangkalan Pancing Tasikmalaya', 'Toko alat pancing.', 'fa-fish-fins')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="ppt.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">Pangkalan Pancing</h3>
                         </div>
-                        <div onclick="openModal('COBOY Petshop', 'Klinik hewan dan petshop.')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
+                        <div onclick="openModal('COBOY Petshop', 'Klinik hewan dan petshop.', 'fa-cat')" class="client-card-item custom-card rounded-2xl p-4 text-center cursor-pointer flex flex-col items-center justify-between w-[210px] h-[180px] shrink-0 group">
                             <div class="w-full h-24 flex items-center justify-center p-2 bg-slate-50 rounded-xl my-auto"><img src="coboy.png" class="max-h-full max-w-full object-contain"></div>
                             <h3 class="text-xs font-bold text-slate-800">COBOY Petshop</h3>
                         </div>
@@ -647,11 +666,11 @@
         </section>
 
         <!-- SECTION 5: TENTANG -->
-        <section id="tentang" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <section id="tentang" class="py-16 pt-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
             <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-start">
                 <div class="space-y-6 pt-1" data-aos="zoom-in-right" data-aos-duration="800">
                     <span class="text-xs font-bold text-indigo-600 tracking-widest uppercase bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-flex items-center gap-2">
-                        <i class="fa-solid fa-building text-indigo-500"></i> Profil Perusahaan
+                        <i class="fa-solid fa-building text-indigo-500"></i> PROFIL PERUSAHAAN
                     </span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Access Media Tasikmalaya</h2>
                     <p class="text-slate-600 text-sm leading-relaxed">
@@ -718,7 +737,7 @@
             </button>
             <div class="text-center space-y-4 pt-2">
                 <div class="w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
-                    <i class="fa-solid fa-circle-info"></i>
+                    <i id="modalAppIcon" class="fa-solid fa-cube"></i>
                 </div>
                 <h3 id="modalAppTitle" class="text-2xl font-black text-slate-900 leading-snug">Nama Item</h3>
                 <p id="modalAppDesc" class="text-slate-600 text-xs sm:text-sm leading-relaxed">Penjelasan rinci mengenai item akan ditampilkan di sini.</p>
@@ -733,7 +752,7 @@
         </div>
     </div>
 
-    <!-- FLOATING BUTTONS (KIRI: MENU SHARE & KANAN: WHATSAPP - POSISI DINAIKKAN DI MOBILE) -->
+    <!-- FLOATING BUTTONS -->
     <div class="fixed bottom-16 sm:bottom-6 left-4 sm:left-6 z-[999] flex flex-col items-start">
         <div id="socialSubMenu" class="hidden flex-col gap-3 mb-3 transition-all duration-300">
             <a href="https://youtube.com" target="_blank" class="w-11 h-11 sm:w-14 sm:h-14 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center shadow-2xl transition-transform hover:scale-110" aria-label="YouTube">
@@ -751,7 +770,7 @@
         </button>
     </div>
 
-    <!-- Floating WhatsApp Button di Pojok Kanan Bawah (POSISI DINAIKKAN DI MOBILE) -->
+    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20ingin%20berkonsultasi" target="_blank" class="fixed bottom-16 sm:bottom-6 right-4 sm:right-6 z-[999] w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center text-lg sm:text-2xl shadow-2xl transition-all transform hover:scale-110" aria-label="WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
@@ -771,7 +790,13 @@
                 <h4 class="font-bold text-white mb-3 text-sm flex items-center justify-center md:justify-start gap-2">
                     <i class="fa-solid fa-location-dot text-indigo-400"></i> Alamat Kantor
                 </h4>
-                <p class="text-indigo-200 leading-relaxed">JL. Noenoeng Tisnasaputra, Kahuripan, Kec. Tawang, Tasikmalaya, Jawa Barat 46116</p>
+                <!-- Tautan Alamat ke Google Maps secara langsung -->
+                <a href="https://www.google.com/maps/search/?api=1&query=JL.+Noenoeng+Tisnasaputra,+Kahuripan,+Kec.+Tawang,+Tasikmalaya,+Jawa+Barat+46116" target="_blank" class="text-indigo-200 hover:text-cyan-300 transition-colors underline decoration-cyan-400/50 hover:decoration-cyan-400 leading-relaxed block group">
+                    JL. Noenoeng Tisnasaputra, Kahuripan, Kec. Tawang, Tasikmalaya, Jawa Barat 46116
+                    <span class="inline-block text-[10px] bg-indigo-900/80 text-cyan-300 px-2 py-0.5 rounded border border-indigo-700 ml-1 group-hover:bg-cyan-500 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-[9px] mr-1"></i>Buka Maps
+                    </span>
+                </a>
             </div>
             <div class="flex flex-col items-center justify-center text-center">
                 <img src="Logo-access (1).png" alt="Access Media" class="h-20 w-auto object-contain mix-blend-screen mb-1">
@@ -792,42 +817,42 @@
             duration: 800
         });
 
-        /* Fitur ScrollSpy */
+        /* --- SCRIPT SCROLLSPY AKURAT BERBASIS VIEWPORT --- */
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-link');
 
-        window.addEventListener('scroll', () => {
-            let current = '';
+        function updateActiveNav() {
+            let currentSection = '';
+
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 120;
-                const sectionHeight = section.offsetHeight;
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 150)) {
+                    currentSection = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
+                if (link.getAttribute('href') === '#' + currentSection) {
                     link.classList.add('active');
                 }
             });
-        });
+        }
 
-        /* Toggle Menu Share */
+        window.addEventListener('scroll', updateActiveNav);
+        window.addEventListener('load', updateActiveNav);
+
+        /* Toggle Menu Share Melayang */
         function toggleSocialMenu() {
             const menu = document.getElementById('socialSubMenu');
             if (menu) {
-                if (menu.classList.contains('hidden')) {
-                    menu.classList.remove('hidden');
-                    menu.classList.add('flex');
-                } else {
-                    menu.classList.remove('flex');
-                    menu.classList.add('hidden');
-                }
+                menu.classList.toggle('hidden');
+                menu.classList.toggle('flex');
             }
         }
 
+        /* Toggle Menu Mobile Hamburger */
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             if(menu) {
@@ -835,40 +860,36 @@
             }
         }
 
-        /* Filter Aplikasi */
+        /* Filter Pencarian Aplikasi */
         function filterApps() {
             const input = document.getElementById('appSearchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.app-card-item');
 
             cards.forEach(card => {
                 const title = card.querySelector('h3').innerText.toLowerCase();
-                if(title.includes(input)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
+                card.style.display = title.includes(input) ? "flex" : "none";
             });
         }
 
-        /* Filter Klien */
+        /* Filter Pencarian Klien */
         function filterClients() {
             const input = document.getElementById('clientSearchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.client-card-item');
 
             cards.forEach(card => {
                 const title = card.querySelector('h3').innerText.toLowerCase();
-                if(title.includes(input)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
+                card.style.display = title.includes(input) ? "flex" : "none";
             });
         }
 
         /* Modal Detail Popup */
-        function openModal(title, description) {
+        function openModal(title, description, iconClass = 'fa-cube') {
             document.getElementById('modalAppTitle').innerText = title;
             document.getElementById('modalAppDesc').innerText = description;
+            
+            const iconElement = document.getElementById('modalAppIcon');
+            iconElement.className = 'fa-solid ' + iconClass + ' text-2xl sm:text-3xl';
+
             document.getElementById('modalWaBtn').href = 'https://wa.me/6285220419992?text=Halo%20Access%20Media,%20saya%20tertarik%20dengan%20info%20' + encodeURIComponent(title);
             
             const modal = document.getElementById('appModal');
@@ -882,12 +903,12 @@
             modal.classList.remove('flex');
         }
 
-        /* Toggle Dark Mode */
+        /* Toggle Fitur Dark Mode */
         const themeToggleBtn = document.getElementById('themeToggle');
         const themeMoon = document.getElementById('themeMoon');
         const themeSun = document.getElementById('themeSun');
 
-        function updateThemeIcons(isDark) {
+        function classDarkState(isDark) {
             if (isDark) {
                 if (themeMoon) themeMoon.classList.add('hidden');
                 if (themeSun) themeSun.classList.remove('hidden');
@@ -899,10 +920,10 @@
 
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.body.classList.add('dark-mode');
-            updateThemeIcons(true);
+            classDarkState(true);
         } else {
             document.body.classList.remove('dark-mode');
-            updateThemeIcons(false);
+            classDarkState(false);
         }
 
         if (themeToggleBtn) {
@@ -910,7 +931,7 @@
                 document.body.classList.toggle('dark-mode');
                 const isDark = document.body.classList.contains('dark-mode');
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
-                updateThemeIcons(isDark);
+                classDarkState(isDark);
             });
         }
     </script>
